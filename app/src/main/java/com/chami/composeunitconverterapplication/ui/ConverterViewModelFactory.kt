@@ -1,4 +1,4 @@
-package com.chami.composeunitconverterapplication
+package com.chami.composeunitconverterapplication.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
