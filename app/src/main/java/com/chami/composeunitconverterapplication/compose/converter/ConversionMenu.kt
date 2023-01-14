@@ -24,6 +24,7 @@ import com.chami.composeunitconverterapplication.R
 @Composable
 fun ConversionMenu(
     list: List<Conversion>,
+    isLandscape : Boolean,
     modifier: Modifier = Modifier,
     itemConvert: (Conversion) -> Unit
 ) {
@@ -40,41 +41,78 @@ fun ConversionMenu(
 
     Column {
 
-        OutlinedTextField(
-            value = displayingText,
-            onValueChange = {
-                displayingText = it
-            },
-            textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
-            modifier = modifier
-                .fillMaxWidth()
-                .clickable {
-                    isExpanded = !isExpanded
-                }
-                .onGloballyPositioned { coordinates ->
-                    textFieldSize = coordinates.size.toSize()
+        if(isLandscape) {
+            OutlinedTextField(
+                value = displayingText,
+                onValueChange = {
+                    displayingText = it
                 },
-            label = {
-                Text(text = "Conversion Type")
-            },
-            trailingIcon = {
-                Icon(
-                    imageVector = icon, contentDescription = "icon"
+                textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
+                modifier = modifier
+                    .clickable {
+                        isExpanded = !isExpanded
+                    }
+                    .onGloballyPositioned { coordinates ->
+                        textFieldSize = coordinates.size.toSize()
+                    },
+                label = {
+                    Text(text = "Conversion Type")
+                },
+                trailingIcon = {
+                    Icon(
+                        imageVector = icon, contentDescription = "icon"
+                    )
+                },
+                readOnly = true,
+                enabled = false,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    disabledTextColor = MaterialTheme.colors.onSurface,
+                    disabledBorderColor = colorResource(R.color.purple_500),
+                    disabledPlaceholderColor = MaterialTheme.colors.onPrimary,
+                    disabledLabelColor = Color.White,
+                    //For Icons
+                    disabledLeadingIconColor = Color.White,
+                    disabledTrailingIconColor = Color.White
                 )
-            },
-            readOnly = true,
-            enabled = false,
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                disabledTextColor = MaterialTheme.colors.onSurface,
-                disabledBorderColor = colorResource(R.color.purple_500),
-                disabledPlaceholderColor = MaterialTheme.colors.onPrimary,
-                disabledLabelColor = Color.White,
-                //For Icons
-                disabledLeadingIconColor = Color.White,
-                disabledTrailingIconColor = Color.White
-            )
 
-        )
+            )
+        }else{
+            OutlinedTextField(
+                value = displayingText,
+                onValueChange = {
+                    displayingText = it
+                },
+                textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        isExpanded = !isExpanded
+                    }
+                    .onGloballyPositioned { coordinates ->
+                        textFieldSize = coordinates.size.toSize()
+                    },
+                label = {
+                    Text(text = "Conversion Type")
+                },
+                trailingIcon = {
+                    Icon(
+                        imageVector = icon, contentDescription = "icon"
+                    )
+                },
+                readOnly = true,
+                enabled = false,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    disabledTextColor = MaterialTheme.colors.onSurface,
+                    disabledBorderColor = colorResource(R.color.purple_500),
+                    disabledPlaceholderColor = MaterialTheme.colors.onPrimary,
+                    disabledLabelColor = Color.White,
+                    //For Icons
+                    disabledLeadingIconColor = Color.White,
+                    disabledTrailingIconColor = Color.White
+                )
+
+            )
+        }
 
         Spacer(modifier = modifier.height(5.dp))
 

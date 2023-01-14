@@ -22,58 +22,112 @@ import com.chami.composeunitconverterapplication.data.Conversion
 @Composable
 fun InputFieldBlock(
     conversion: Conversion,
+    isLandscape : Boolean,
     inputText: MutableState<String>,
     modifier: Modifier = Modifier,
     context: Context = LocalContext.current,
     calculate: (String) -> Unit
 ) {
-    Column(modifier = modifier.padding(top = 30.dp)) {
-        Row(modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            TextField(
-                value = inputText.value, onValueChange = {
-                    inputText.value = it
-                }, modifier = modifier.fillMaxWidth(0.65F),
-                keyboardOptions = KeyboardOptions(
-                    capitalization = KeyboardCapitalization.None,
-                    autoCorrect = true,
-                    keyboardType = KeyboardType.Number
-                ),
-                colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = MaterialTheme.colors.surface.copy(
-                        alpha = 0.3F
-                    )
-                ),
-                textStyle = TextStyle(color = Color.DarkGray, fontSize = 16.sp),
-                maxLines = 1
-            )
+    if (isLandscape){
 
-            Text(
-                text = conversion.convertFrom,
-                fontSize = 14.sp,
-                modifier = modifier
-                    .fillMaxWidth(0.35F)
-            )
-        }
+        Column(modifier = modifier.padding(top = 30.dp)) {
+            Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+                TextField(
+                    value = inputText.value, onValueChange = {
+                        inputText.value = it
+                    },
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.None,
+                        autoCorrect = true,
+                        keyboardType = KeyboardType.Number
+                    ),
+                    colors = TextFieldDefaults.textFieldColors(
+                        backgroundColor = MaterialTheme.colors.surface.copy(
+                            alpha = 0.3F
+                        )
+                    ),
+                    textStyle = TextStyle(color = Color.DarkGray, fontSize = 16.sp),
+                    maxLines = 1
+                )
 
-        Spacer(modifier = Modifier.height(20.dp))
-
-        OutlinedButton(onClick = {
-            if (inputText.value.isNotEmpty()) {
-                calculate(inputText.value)
-            } else {
-                Toast.makeText(context, "Please, enter a value", Toast.LENGTH_SHORT).show()
+                Text(
+                    text = conversion.convertFrom,
+                    fontSize = 14.sp
+                )
             }
 
-        }, modifier = Modifier.fillMaxWidth(1F).height(42.dp)) {
+            Spacer(modifier = Modifier.height(20.dp))
 
-            Text(
-                text = "Convert",
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
-                color = Color.Blue
-            )
+            OutlinedButton(onClick = {
+                if (inputText.value.isNotEmpty()) {
+                    calculate(inputText.value)
+                } else {
+                    Toast.makeText(context, "Please, enter a value", Toast.LENGTH_SHORT).show()
+                }
+
+            }, modifier = Modifier.height(42.dp)) {
+
+                Text(
+                    text = "Convert",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    color = Color.Blue
+                )
+            }
         }
+
+
+    }else{
+        Column(modifier = modifier.padding(top = 30.dp)) {
+            Row(modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                TextField(
+                    value = inputText.value, onValueChange = {
+                        inputText.value = it
+                    }, modifier = modifier.fillMaxWidth(0.65F),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.None,
+                        autoCorrect = true,
+                        keyboardType = KeyboardType.Number
+                    ),
+                    colors = TextFieldDefaults.textFieldColors(
+                        backgroundColor = MaterialTheme.colors.surface.copy(
+                            alpha = 0.3F
+                        )
+                    ),
+                    textStyle = TextStyle(color = Color.DarkGray, fontSize = 16.sp),
+                    maxLines = 1
+                )
+
+                Text(
+                    text = conversion.convertFrom,
+                    fontSize = 14.sp,
+                    modifier = modifier
+                        .fillMaxWidth(0.35F)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            OutlinedButton(onClick = {
+                if (inputText.value.isNotEmpty()) {
+                    calculate(inputText.value)
+                } else {
+                    Toast.makeText(context, "Please, enter a value", Toast.LENGTH_SHORT).show()
+                }
+
+            }, modifier = Modifier.fillMaxWidth(1F).height(42.dp)) {
+
+                Text(
+                    text = "Convert",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    color = Color.Blue
+                )
+            }
+        }
+
     }
+
 
 
 //    @Preview(name = "InPutFieldBlock")
