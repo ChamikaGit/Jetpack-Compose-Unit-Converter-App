@@ -1,4 +1,4 @@
-package com.chami.composeunitconverterapplication
+package com.chami.composeunitconverterapplication.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.chami.composeunitconverterapplication.compose.BaseScreen
-import com.chami.composeunitconverterapplication.data.ConverterDatabase
-import com.chami.composeunitconverterapplication.data.ConverterRepositoryImpl
+import com.chami.composeunitconverterapplication.ui.compose.BaseScreen
 import com.chami.composeunitconverterapplication.ui.theme.ComposeUnitConverterApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

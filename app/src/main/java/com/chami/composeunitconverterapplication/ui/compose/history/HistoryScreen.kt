@@ -1,4 +1,4 @@
-package com.chami.composeunitconverterapplication.compose.history
+package com.chami.composeunitconverterapplication.ui.compose.history
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
