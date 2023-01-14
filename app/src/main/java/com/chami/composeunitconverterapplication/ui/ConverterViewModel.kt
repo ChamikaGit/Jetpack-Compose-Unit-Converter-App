@@ -1,4 +1,4 @@
-package com.chami.composeunitconverterapplication
+package com.chami.composeunitconverterapplication.ui
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

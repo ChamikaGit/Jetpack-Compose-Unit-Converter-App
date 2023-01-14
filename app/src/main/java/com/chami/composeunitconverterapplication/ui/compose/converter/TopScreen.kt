@@ -4,6 +4,8 @@ import ConversionMenu
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -15,6 +17,7 @@ import java.text.DecimalFormat
 @Composable
 fun TopScreen(
     list: List<Conversion>,
+    isLandscape: Boolean,
     modifier: Modifier = Modifier,
     selectedConversion: MutableState<Conversion?>,
     save: (String, String) -> Unit
@@ -27,14 +30,21 @@ fun TopScreen(
     var isAdded by rememberSaveable { mutableStateOf(false) }
 
 
-    Column {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
-        ConversionMenu(list = list) {
+        ConversionMenu(
+            list = list,
+            isLandscape = isLandscape
+        ) {
             selectedConversion.value = it
             typedValue.value = "0.0"
         }
         selectedConversion.value?.let {
-            InputFieldBlock(conversion = it, inputText = inputText) { calculateInput ->
+            InputFieldBlock(
+                conversion = it,
+                isLandscape = isLandscape,
+                inputText = inputText
+            ) { calculateInput ->
                 typedValue.value = calculateInput
                 isAdded = true
             }
@@ -61,7 +71,7 @@ fun TopScreen(
                 isAdded = false
             }
             Spacer(modifier = modifier.height(16.dp))
-            ResultBlock(message1 = message1, message2 = message2)
+            ResultBlock(message1 = message1, message2 = message2, isLandscape = isLandscape)
         }
     }
 }
